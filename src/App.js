@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import URLShortener from './components/URLShortener';
+import StatisticsPage from './components/StatisticsPage';
+import RedirectPage from './components/RedirectHandler';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [urls, setUrls] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav className="navbar">
+        <Link to="/" className="nav-link">Shorten URLs</Link>
+        <Link to="/stats" className="nav-link">Statistics</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<URLShortener urls={urls} setUrls={setUrls} />} />
+        <Route path="/stats" element={<StatisticsPage urls={urls} />} />
+        <Route path="/:shortcode" element={<RedirectPage urls={urls} />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

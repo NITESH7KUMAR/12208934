@@ -1,0 +1,34 @@
+.stats-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stats-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #e5641e;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-left: 5px solid #74e51e;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.card p strong {
+  color: #1e88e5;
+}
