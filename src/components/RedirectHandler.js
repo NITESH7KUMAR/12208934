@@ -7,21 +7,23 @@ const RedirectHandler = () => {
   useEffect(() => {
     const fetchAndRedirect = async () => {
       try {
-
-        const authRes = await fetch("http://20.244.56.144/evaluation-service/auth", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: "nk6870877@gmail.com",
-            name: "nitesh kumar",
-            rollNo: "12208934",
-            accessCode: "CZypQK",
-            clientID: "52d682be-4c11-49bb-95d6-e0279c7f71a0",
-            clientSecret: "UvCeXZREsJNRvvxf",
-          }),
-        });
+        const authRes = await fetch(
+          "http://20.244.56.144/evaluation-service/auth",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: "nk6870877@gmail.com",
+              name: "nitesh kumar",
+              rollNo: "12208934",
+              accessCode: "CZypQK",
+              clientID: "52d682be-4c11-49bb-95d6-e0279c7f71a0",
+              clientSecret: "UvCeXZREsJNRvvxf",
+            }),
+          }
+        );
 
         const authData = await authRes.json();
 
@@ -30,15 +32,19 @@ const RedirectHandler = () => {
           return;
         }
 
-        const token = authData.access_token;
+        const token = authData.access_token; // ✅ FIXED LINE
 
-        const res = await fetch(`http://20.244.56.144/evaluation-service/resolve/${shortcode}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          `http://20.244.56.144/evaluation-service/resolve/${shortcode}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const data = await res.json();
+        console.log("Redirect data:", data);
 
         if (res.ok && data.originalUrl) {
           window.location.href = data.originalUrl;
